@@ -5,10 +5,10 @@
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://dimplejs.org/dist/dimple.v2.0.0.min.js"></script>
     
-    <style>
-      circle.dimple-series-1 {
-        fill: red;
-      }
+	<style>
+		h2 {
+			padding-left: 180px;
+		}
     </style>
 
     <script type="text/javascript">
@@ -19,10 +19,14 @@
       */
 
           "use strict";
-          var margin = 75,
-              width = 1400 - margin,
-              height = 600 - margin;
-
+          var margin = 0,
+              width = 820 - margin,
+              height = 800 - margin;
+		  
+		  d3.select("body")
+			.append("h2")
+			.text("Traffic accidents in Madrid 2009-2014");
+		  
           var svg = d3.select("body")
             .append("svg")
               .attr("width", width + margin)
@@ -35,14 +39,15 @@
       */
 
           var myChart = new dimple.chart(svg, data);
-          var x = myChart.addCategoryAxis("x", "Month");
-		  x.addOrderRule("Id")
-		  var y1 = myChart.addMeasureAxis("y", "Median")
-		  var y2 = myChart.addMeasureAxis("y", "Total")
-          myChart.addSeries(null, dimple.plot.line, [x, y1]);
-		  myChart.addSeries(null, dimple.plot.line, [x, y2]);
-          myChart.addSeries(null, dimple.plot.scatter, [x, y1]);
-		  myChart.addSeries(null, dimple.plot.scatter, [x, y2]);
+          var x = myChart.addCategoryAxis("x", "Year");
+		  var y = myChart.addMeasureAxis("y", "Traffic accidents")
+		  y.tickFormat = d3.format(",.0f");		  
+          var line = myChart.addSeries("Day of the week", dimple.plot.line);
+		  var dayOfWeekOrder = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+		  line.addOrderRule(dayOfWeekOrder)
+		  var scatter = myChart.addSeries("Day of the week", dimple.plot.scatter);
+		  scatter.addOrderRule(dayOfWeekOrder)
+		  myChart.addLegend(735, 100, 100, 100, "right");
           myChart.draw();
         };
 
@@ -54,7 +59,7 @@
     Use D3 (not dimple.js) to load the TSV file
     and pass the contents of it to the draw function
     */
-  d3.tsv("contractsByMonth2015.csv", draw);
+  d3.csv("accidentsMadrid.csv", draw);
   </script>
 </body>
 </html>
