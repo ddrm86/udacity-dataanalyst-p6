@@ -11,7 +11,7 @@
         }
         div {
             padding-left: 50px;
-            padding-right: 1020px;
+            padding-right: 800px;
         }
         svg {
             margin-top:-50px;
@@ -48,6 +48,14 @@
             line.addOrderRule(dayOfWeekOrder)
             var scatter = myChart.addSeries("Day of the week", dimple.plot.scatter);
             scatter.addOrderRule(dayOfWeekOrder)
+            /* custom colors, since Tuesday and Wednesday overlap and they get red and orange automatically */
+            myChart.assignColor("Monday", "rgb(128, 177, 211)", "rgb(107, 148, 176)", 0.8);
+            myChart.assignColor("Tuesday", "rgb(251, 128, 114)", "rgb(210, 107, 95)", 0.8);            
+            myChart.assignColor("Wednesday", "rgb(255, 237, 111)", "rgb(213, 198, 92)", 0.8);
+            myChart.assignColor("Thursday", "rgb(179, 222, 105)", "rgb(149, 185, 87)", 0.8);
+            myChart.assignColor("Friday", "rgb(253, 180, 98)", "rgb(211, 150, 81)", 0.8);
+            myChart.assignColor("Saturday", "rgb(188, 128, 189)", "rgb(157, 107, 158)", 0.8);
+            myChart.assignColor("Sunday", "rgb(141, 211, 199)", "rgb(117, 176, 166)", 0.8);
             myChart.addLegend(735, 100, 100, 100, "right");
             myChart.draw();
         };
