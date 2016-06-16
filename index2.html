@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://dimplejs.org/dist/dimple.v2.0.0.min.js"></script>
+    
+	<style>
+		h2 {
+			padding-left: 180px;
+		}
+		div {
+			padding-left: 50px;
+			padding-right: 1020px;
+		}
+		svg {
+			margin-top:-50px;
+		}
+		body {
+			margin: 0 auto;
+		}
+	
+    </style>
+
+    <script type="text/javascript">
+      function draw(data) {
+      
+      /*
+        D3.js setup code
+      */
+
+          "use strict";
+          var margin = 0,
+              width = 820 - margin,
+              height = 800 - margin;
+		  		  
+          var svg = d3.select("body")
+            .append("svg")
+              .attr("width", width + margin)
+              .attr("height", height + margin)
+            .append('g')
+                .attr('class','chart');
+
+      /*
+        Dimple.js Chart construction code
+      */
+
+          var myChart = new dimple.chart(svg, data);
+          var x = myChart.addCategoryAxis("x", "Year");
+		  var y = myChart.addMeasureAxis("y", "Traffic accidents")
+		  y.tickFormat = d3.format(",.0f");
+		  y.overrideMin = 1200;
+          var line = myChart.addSeries("Day of the week", dimple.plot.line);
+		  var dayOfWeekOrder = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+		  line.addOrderRule(dayOfWeekOrder)
+		  var scatter = myChart.addSeries("Day of the week", dimple.plot.scatter);
+		  scatter.addOrderRule(dayOfWeekOrder)
+		  myChart.addLegend(735, 100, 100, 100, "right");
+          myChart.draw();
+        };
+
+    </script>
+  </head>
+<body>
+	<h2>Traffic accidents in Madrid 2009-2014</h2>
+	<div>
+		<p>
+			The number of traffic accidents in Madrid is lower during the weekends, especially on Sundays. Friday is the day of the week with more accidents, although the difference with respect to the rest of the weekdays seems to be narrowing over time.			
+		</p>
+		<p>
+			Hover the mouse over the points to get the exact numbers.
+		</p>
+		<p>
+			Source: <a href="http://datos.madrid.es/egob/catalogo/207831-2-accidentes-trafico.xls">http://datos.madrid.es/egob/catalogo/207831-2-accidentes-trafico.xls</a>
+		</p>
+	</div>
+	<script type="text/javascript">
+		d3.csv("accidentsMadrid.csv", draw);
+	</script>
+</body>
+</html>
