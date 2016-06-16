@@ -98,8 +98,8 @@ _Myles_
 
 ### RESOURCES
 
-* http://datos.madrid.es/egob/catalogo/207831-2-accidentes-trafico.xls
-* https://github.com/PMSI-AlignAlytics/dimple/wiki/dimple.chart
-* https://discussions.udacity.com/
-* http://gravyanecdote.com/uncategorized/mythbusters-should-you-start-your-axes-at-zero/
-* http://stephanieevergreen.com/non-zero-axis-rules/
+* Original dataset: http://datos.madrid.es/egob/catalogo/207831-2-accidentes-trafico.xls
+* Dimple wiki: https://github.com/PMSI-AlignAlytics/dimple/wiki/dimple.chart
+* Feedback and help with dimple: https://discussions.udacity.com/t/feedback-traffic-accidents-in-madrid/173088
+* Breaking axes discussion: http://gravyanecdote.com/uncategorized/mythbusters-should-you-start-your-axes-at-zero/
+* Breaking axes discussion 2: http://stephanieevergreen.com/non-zero-axis-rules/
